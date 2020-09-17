@@ -25,6 +25,9 @@ function renderTimeBlocks() {
 }
 
 // Grabs any tasks loaded in local storage
+function renderStoredTasks(){
+    console.log();
+}
 
 // Storing the task in local storage
 function storeTask(buttonId) {
