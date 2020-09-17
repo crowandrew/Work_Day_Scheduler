@@ -14,7 +14,7 @@ function renderTimeBlocks() {
         const newDescription = $("<textarea>").addClass("col-8 description").attr("id", "textArea" + i).attr("type", "text");
         const newButton = $("<button>").addClass("col-2 saveBtn fas fa-save").attr("id", "button" + i).attr("type", "submit");
         let areaMod = "#textArea" + i;
-        $(newRow).append(newTimeBox,newDescription,newButton);
+        $(newRow).append(newTimeBox, newDescription, newButton);
         $(".container").append(newRow);
         renderHour(newTimeBox, i);
         setTimeBlocks(areaMod, i);
@@ -60,7 +60,7 @@ function setTimeBlocks(areaMod, i) {
 
 // Event listener for the save buttons
 $(".saveBtn").on("click", function (event) {
-    event.preventDefault();    
+    event.preventDefault();
     storeTask(event.target.id)
 })
 
