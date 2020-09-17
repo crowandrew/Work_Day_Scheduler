@@ -2,22 +2,19 @@
 const currentDay = $("#currentDay").text(moment().format("dddd, MMMM Do YYYY"))
 const currentTime = moment().format("H");
 
+
 // Initializing page
 renderTimeBlocks();
 
 // Loading each time block
 function renderTimeBlocks() {
     for (let i = 9; i < 18; i++) {
-        const button = "button";
-        const textArea = "textArea";
-        const newRow = $("<form>").addClass("row time-block");
-        const newTimeBox = $("<label>").addClass("col-2 hour").attr("for", textArea + i);
-        const newDescription = $("<textarea>").addClass("col-8 col-lg-9 description").attr("id", textArea + i).attr("type", "text");
-        const newButton = $("<button>").addClass("col saveBtn d-flex justify-content-center align-items-center").attr("id", button + i).attr("type", "submit");
-        const newSaveIcon = $("<i>").addClass("fas fa-save");
-        let areaMod = "#" + textArea + i;
-        $(newRow).append(newTimeBox).append(newDescription).append(newButton);
-        $(newButton).append(newSaveIcon);
+        const newRow = $("<div>").addClass("row time-block");
+        const newTimeBox = $("<div>").addClass("col-2 hour").attr("for", "textArea" + i);
+        const newDescription = $("<textarea>").addClass("col-8 description").attr("id", "textArea" + i).attr("type", "text");
+        const newButton = $("<button>").addClass("col-2 saveBtn fas fa-save").attr("id", "button" + i).attr("type", "submit");
+        let areaMod = "#textArea" + i;
+        $(newRow).append(newTimeBox,newDescription,newButton);
         $(".container").append(newRow);
         renderHour(newTimeBox, i);
         setTimeBlocks(areaMod, i);
@@ -27,49 +24,44 @@ function renderTimeBlocks() {
 
 // Grabs any tasks loaded in local storage
 function renderStoredTasks(areaMod, i) {
-    console.log(localStorage.getItem(i));
     $(areaMod).text(localStorage.getItem(i));
 }
 
 // Storing the task in local storage
 function storeTask(buttonId) {
     let num = buttonId.slice(6);
-    let text = "#textArea" + num;
-    localStorage.setItem(num, text);
-    renderStoredTasks(text, num);
+    let inputText = $("#textArea" + num).val();
+    localStorage.setItem(num, inputText);
+    renderStoredTasks(inputText, num);
 }
 
 // Sets the hour for each time block
 function renderHour(newTimeBox, i) {
-    if (i < 13) {
-        newTimeBox.text(i + ":00");
+    if (i < 12) {
+        newTimeBox.text(i + ":00 AM");
+    } else if (i === 12) {
+        newTimeBox.text(i + ":00 PM")
     } else {
         let tempTime = i - 12;
-        newTimeBox.text(tempTime + ":00");
+        newTimeBox.text(tempTime + ":00 PM");
     };
 }
 
 // Checks the current time and sets a class for past, present or future
-function setTimeBlocks(textArea, timeId) {
-    if (currentTime == timeId) {
-        $(textArea).addClass("present");
-    } else if (currentTime > timeId) {
-        $(textArea).addClass("past");
+function setTimeBlocks(areaMod, i) {
+    if (currentTime == i) {
+        $(areaMod).addClass("present");
+    } else if (currentTime > i) {
+        $(areaMod).addClass("past");
     } else {
-        $(textArea).addClass("future");
+        $(areaMod).addClass("future");
     }
 }
 
 // Event listener for the save buttons
 $(".saveBtn").on("click", function (event) {
-    event.preventDefault();
-    let buttonId;
-    if (event.target.id === "") {
-        buttonId = event.target.parentElement.id;
-    } else {
-        buttonId = event.target.id;
-    }
-    storeTask(buttonId)
+    event.preventDefault();    
+    storeTask(event.target.id)
 })
 
 
