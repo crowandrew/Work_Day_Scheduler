@@ -12,7 +12,7 @@ function renderTimeBlocks() {
         const textArea = "textArea";
         const newRow = $("<form>").addClass("row time-block");
         const newTimeBox = $("<label>").addClass("col-2 hour").attr("for", textArea + i);
-        const newDescription = $("<textarea>").addClass("col-9 description").attr("id", textArea + i).attr("type", "text");
+        const newDescription = $("<textarea>").addClass("col-8 col-lg-9 description").attr("id", textArea + i).attr("type", "text");
         const newButton = $("<button>").addClass("col saveBtn d-flex justify-content-center align-items-center").attr("id", button + i).attr("type", "submit");
         const newSaveIcon = $("<i>").addClass("fas fa-save");
         let areaMod = "#" + textArea + i;
@@ -31,8 +31,8 @@ function renderStoredTasks(){
 
 // Storing the task in local storage
 function storeTask(buttonId) {
-    console.log()
-    console.log(buttonId);
+    buttonNum = buttonId.split("")[6];
+    console.log(buttonNum);
 }
 
 // Sets the hour for each time block
