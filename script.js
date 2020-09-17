@@ -21,18 +21,22 @@ function renderTimeBlocks() {
         $(".container").append(newRow);
         renderHour(newTimeBox,i);
         setTimeBlocks(areaMod, i);
+        renderStoredTasks(areaMod, i);
     };
 }
 
 // Grabs any tasks loaded in local storage
-function renderStoredTasks(){
-    console.log();
+function renderStoredTasks(areaMod,i){
+    console.log(localStorage.getItem(i));
+    $(areaMod).text(localStorage.getItem(i));
 }
 
 // Storing the task in local storage
 function storeTask(buttonId) {
-    buttonNum = buttonId.split("")[6];
-    console.log(buttonNum);
+    let num = buttonId.slice(6);
+    let text = "#textArea" + num;
+    localStorage.setItem(num,text);
+    renderStoredTasks(text,num);    
 }
 
 // Sets the hour for each time block
