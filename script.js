@@ -1,6 +1,6 @@
 // Setting current date and time
 const currentDay = $("#currentDay").text(moment().format("dddd, MMMM Do YYYY"))
-const currentTime = moment().format("h");
+const currentTime = moment().format("H");
 
 // Initializing page
 renderTimeBlocks();
@@ -19,14 +19,14 @@ function renderTimeBlocks() {
         $(newRow).append(newTimeBox).append(newDescription).append(newButton);
         $(newButton).append(newSaveIcon);
         $(".container").append(newRow);
-        renderHour(newTimeBox,i);
+        renderHour(newTimeBox, i);
         setTimeBlocks(areaMod, i);
         renderStoredTasks(areaMod, i);
     };
 }
 
 // Grabs any tasks loaded in local storage
-function renderStoredTasks(areaMod,i){
+function renderStoredTasks(areaMod, i) {
     console.log(localStorage.getItem(i));
     $(areaMod).text(localStorage.getItem(i));
 }
@@ -35,13 +35,13 @@ function renderStoredTasks(areaMod,i){
 function storeTask(buttonId) {
     let num = buttonId.slice(6);
     let text = "#textArea" + num;
-    localStorage.setItem(num,text);
-    renderStoredTasks(text,num);    
+    localStorage.setItem(num, text);
+    renderStoredTasks(text, num);
 }
 
 // Sets the hour for each time block
-function renderHour(newTimeBox,i){
-    if (i < 13){
+function renderHour(newTimeBox, i) {
+    if (i < 13) {
         newTimeBox.text(i + ":00");
     } else {
         let tempTime = i - 12;
