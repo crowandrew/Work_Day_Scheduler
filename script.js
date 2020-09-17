@@ -2,6 +2,9 @@
 const currentDay = $("#currentDay").text(moment().format("dddd, MMMM Do YYYY"))
 const currentTime = moment().format("h");
 
+// Initializing page
+renderTimeBlocks();
+
 // Loading each time block
 function renderTimeBlocks() {
     for (let i = 9; i < 18; i++) {
@@ -21,12 +24,13 @@ function renderTimeBlocks() {
     };
 }
 
-function storeTask(buttonId) {
+// Grabs any tasks loaded in local storage
 
+// Storing the task in local storage
+function storeTask(buttonId) {
+    console.log()
     console.log(buttonId);
 }
-
-renderTimeBlocks();
 
 // Sets the hour for each time block
 function renderHour(newTimeBox,i){
