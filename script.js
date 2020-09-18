@@ -63,6 +63,3 @@ $(".saveBtn").on("click", function (event) {
     event.preventDefault();
     storeTask(event.target.id)
 })
-
-
-
