@@ -1,4 +1,4 @@
-# Work_Day_Scheduler
+# work_day_scheduler
 
 ## Description
 
