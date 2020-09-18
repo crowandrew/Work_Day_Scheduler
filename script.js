@@ -10,9 +10,9 @@ renderTimeBlocks();
 function renderTimeBlocks() {
     for (let i = 9; i < 18; i++) {
         const newRow = $("<div>").addClass("row time-block");
-        const newTimeBox = $("<div>").addClass("col-2 hour").attr("for", "textArea" + i);
-        const newDescription = $("<textarea>").addClass("col-8 description").attr("id", "textArea" + i).attr("type", "text");
-        const newButton = $("<button>").addClass("col-2 saveBtn fas fa-save").attr("id", "button" + i).attr("type", "submit");
+        const newTimeBox = $("<div>").addClass("col-2 hour");
+        const newDescription = $("<textarea>").addClass("col-8 description").attr("id", "textArea" + i);
+        const newButton = $("<button>").addClass("col-2 saveBtn fas fa-save").attr("id", "button" + i);
         let areaMod = "#textArea" + i;
         $(newRow).append(newTimeBox, newDescription, newButton);
         $(".container").append(newRow);
